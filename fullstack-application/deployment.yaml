@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fullstack
+  labels:
+    app: fullstack
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fullstack
+  template:
+    metadata:
+      labels:
+        app: fullstack
+    spec:
+      containers:
+      - name: frontend
+        image: localhost:5000/frontend:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5173
+        env:
+        - name: VITE_BACKEND_URL
+          valueFrom:
+            secretKeyRef:
+              name: fullstack-secret
+              key: VITE_BACKEND_URL
+      - name: backend
+        image: localhost:5000/backend:v1
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          valueFrom:
+            secretKeyRef:
+              name: fullstack-secret
+              key: PORT
+        - name: FRONTEND_BASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: fullstack-secret
+              key: FRONTEND_BASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fullstack-service
+spec:
+  type: ClusterIP
+  selector:
+    app: fullstack
+  ports:
+  - name: frontend
+    port: 5173
+    targetPort: 5173
+  - name: backend
+    port: 3000
+    targetPort: 3000

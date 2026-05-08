@@ -1,0 +1,70 @@
+# ============================================================
+# .dockerignore — covers Node.js, .NET, and Python backends
+#                 with a React (Vite/CRA) frontend
+# ============================================================
+
+
+# --- Git & IDE ---
+.git
+.gitignore
+.github
+.vscode
+.idea
+*.md
+
+
+# --- Environment & secrets ---
+.env
+.env.*
+!.env.example
+
+
+# --- Frontend (React) ---
+frontend/node_modules
+frontend/dist
+frontend/.cache
+frontend/coverage
+
+
+# --- Backend: Node.js ---
+backend/node_modules
+backend/dist
+backend/.next
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+# --- Backend: .NET ---
+backend/bin
+backend/obj
+backend/.vs
+backend/**/*.user
+backend/**/*.DotSettings
+backend/**/*.DotSettings.user
+
+
+# --- Backend: Python ---
+backend/__pycache__
+backend/**/__pycache__
+backend/*.pyc
+backend/**/*.pyc
+backend/.venv
+backend/venv
+backend/env
+backend/.pytest_cache
+backend/**/*.egg-info
+backend/dist
+backend/build
+backend/.mypy_cache
+backend/.ruff_cache
+
+
+# --- Docker ---
+**/Dockerfile*
+**/.dockerignore
+
+
+# --- OS artifacts ---
+.DS_Store
+Thumbs.db
