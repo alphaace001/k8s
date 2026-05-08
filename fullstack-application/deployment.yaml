@@ -55,6 +55,3 @@ spec:
   - name: frontend
     port: 5173
     targetPort: 5173
-  - name: backend
-    port: 3000
-    targetPort: 3000

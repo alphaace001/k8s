@@ -8,13 +8,6 @@ spec:
     - host: localhost
       http:
         paths:
-          - path: /api
-            pathType: Prefix
-            backend:
-              service:
-                name: fullstack-service
-                port:
-                  number: 3000
           - path: /
             pathType: Prefix
             backend:

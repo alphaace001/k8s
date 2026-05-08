@@ -29,6 +29,12 @@ export default defineConfig({
   server: {
     host: true,          // allows external access
     allowedHosts: true,  // allows all domains (wildcard)
+    proxy: {
+      "/api": {
+        target: "http://localhost:3000",
+        changeOrigin: true,
+      },
+    },
   },
 
   build: {
